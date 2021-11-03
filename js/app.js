@@ -1,23 +1,50 @@
-const listInput = document.querySelector(".list-add");
-const buttonAdd = document.querySelector(".button");
-const list = document.querySelector(".list").firstElementChild;
-console.log(list.innerHTML);
+const toDoInput = document.querySelector('.todo-input');
+const toDoButton = document.querySelector('.todo-button');
+const toDoList = document.querySelector('.todo-list');
 
-let addToList = () => {
-    const newLi = document.createElement("li");
-    const liContent = document.createTextNode(listInput.value);
-    newLi.appendChild(liContent);
-    list.appendChild(newLi);
+toDoButton.addEventListener('click', addToDo);
 
-    const modifyBtn = document.createElement("button");
-    const modifyBtnContent = document.createTextNode("Modify");
-    modifyBtn.appendChild(modifyBtnContent);
-    newLi.appendChild(modifyBtn);
+function addToDo(event) {
+    event.preventDefault();
+    const toDoDiv = document.createElement("div");
+    toDoDiv.classList.add("todo");
 
-    const deleteBtn = document.createElement("button");
-    const deleteBtnContent = document.createTextNode("Delete");
-    deleteBtn.appendChild(deleteBtnContent);
-    newLi.appendChild(deleteBtn);
+    const newToDo = document.createElement("li");
+    newToDo.innerText = toDoInput.value;
+    newToDo.classList.add("todo-item");
+    toDoDiv.appendChild(newToDo);
+
+    const toDoCheckBtn = document.createElement("button");
+    toDoCheckBtn.innerHTML = "<i class='fas fa-check-square'></i>"
+    toDoCheckBtn.classList.add("complete-btn");
+    toDoDiv.appendChild(toDoCheckBtn);
+
+    const toDoModifyBtn = document.createElement("button");
+    toDoModifyBtn.innerHTML = "<i class='fas fa-edit'></i>";
+    toDoModifyBtn.classList.add("modify-btn");
+    toDoDiv.appendChild(toDoModifyBtn);
+
+    const toDoDeleteBtn = document.createElement("button");
+    toDoDeleteBtn.innerHTML = "<i class='fas fa-trash'></i>";
+    toDoDeleteBtn.classList.add("trash-btn");
+    toDoDiv.appendChild(toDoDeleteBtn);
+
+    toDoList.appendChild(toDoDiv);
+
+    toDoInput.value = "";
 }
 
-buttonAdd.addEventListener('click', addToList);
+function toDoDone(event) {
+    event.preventDefault();
+    const completedBtn = document.querySelector(".complete-btn");
+    completedBtn.style.textDecoration = "line-through";
+}
+
+function toDoDelete() {
+    const deleteBtn = document.querySelector(".trash-btn");
+    deleteBtn.parentNode.removeChild(deleteBtn);
+}
+
+function toDoModify() {
+    const modifyBtn = document.querySelector(".modify-btn");
+}
