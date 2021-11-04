@@ -59,7 +59,7 @@ function toDoDelete(e) {
 }
 
 function toDoModify(e) {
-    const modifyBtn = e.target;
+    let modifyBtn = e.target;
     if (modifyBtn.classList[0] === "modify-btn") {
 
     }
