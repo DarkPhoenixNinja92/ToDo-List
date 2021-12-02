@@ -59,10 +59,11 @@ function toDoDelete(e) {
 }
 
 function toDoModify(e) {
-    let modifyBtn = e.target;
-    if (modifyBtn.classList[0] === "modify-btn") {
-
+    if (e.target.classList[0] === "modify-btn") {
+        toDoInput.value = e.target.parentElement.childNodes[0].innerText;
+        e.target.parentElement.remove();
     }
+    addToDo();
 }
 
 function filterToDo(e) {
