@@ -8,6 +8,7 @@ toDoList.addEventListener('click', toDoDelete);
 toDoList.addEventListener('click', toDoDone);
 toDoList.addEventListener('click', toDoModify);
 filterOption.addEventListener('click', filterToDo);
+let eventStatus = true;
 
 function addToDo(event) {
     event.preventDefault();
@@ -63,6 +64,7 @@ function toDoModify(e) {
         toDoInput.value = e.target.parentElement.childNodes[0].innerText;
         e.target.parentElement.remove();
     }
+    eventStatus = false;
     addToDo();
 }
 
